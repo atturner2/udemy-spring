@@ -13,7 +13,10 @@ public class MySpringDemoApplication {
 
         var context = new AnnotationConfigApplicationContext(ProjectConfig.class);
 
-        Vehicle veh1 = context.getBean("audiVehicle",Vehicle.class);
+        //in order to use this naming convention you have to give the beans
+        //a specific name. alternatively, the bean name will be the method name, like you see
+        //in the first example
+        Vehicle veh1 = context.getBean("vehicle1",Vehicle.class);
         System.out.println("Vehicle name from Spring Context is: " + veh1.getName());
 
         Vehicle veh2 = context.getBean("hondaVehicle",Vehicle.class);

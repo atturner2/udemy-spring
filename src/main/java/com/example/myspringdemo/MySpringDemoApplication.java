@@ -1,13 +1,30 @@
 package com.example.myspringdemo;
 
+import beans.Vehicle;
+import config.ProjectConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 @SpringBootApplication
 public class MySpringDemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MySpringDemoApplication.class, args);
+
+        var context = new AnnotationConfigApplicationContext(ProjectConfig.class);
+
+        Vehicle veh1 = context.getBean("audiVehicle",Vehicle.class);
+        System.out.println("Vehicle name from Spring Context is: " + veh1.getName());
+
+        Vehicle veh2 = context.getBean("hondaVehicle",Vehicle.class);
+        System.out.println("Vehicle name from Spring Context is: " + veh2.getName());
+
+        Vehicle veh3 = context.getBean("ferrariVehicle",Vehicle.class);
+        System.out.println("Vehicle name from Spring Context is: " + veh3.getName());
+        //this will throw a NoSuchBeanDefinitionException because there is no bean with this name.
+        //if you don't name the beans, then you get NoUniqueBeanDefinition
+        Vehicle veh4 = context.getBean("There isnt a vehicle with this name",Vehicle.class);
+        System.out.println("Vehicle that doesnt exist from Spring Context is: " + veh4.getName());
     }
 
 }

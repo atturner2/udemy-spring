@@ -13,9 +13,12 @@ public class MySpringDemoApplication {
 
         var context = new AnnotationConfigApplicationContext(ProjectConfig.class);
 
+        //Here is the primary bean
+        Vehicle primaryVehicleBean = context.getBean(Vehicle.class);
+        System.out.println("Primary Vehicle name from Spring context is: " + primaryVehicleBean.getName());
         //in order to use this naming convention you have to give the beans
         //a specific name. alternatively, the bean name will be the method name, like you see
-        //in the first example
+        //in the below exampl
         Vehicle veh1 = context.getBean("vehicle1",Vehicle.class);
         System.out.println("Vehicle name from Spring Context is: " + veh1.getName());
 

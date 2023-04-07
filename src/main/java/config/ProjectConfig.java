@@ -3,6 +3,7 @@ package config;
 import beans.Vehicle;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class ProjectConfig {
@@ -13,6 +14,13 @@ public class ProjectConfig {
     this method when it initializes its context and adds the returned
     value to the context.
     * */
+    @Primary
+    @Bean()
+    Vehicle corvette() {
+        var veh = new Vehicle();
+        veh.setName("Corvette");
+        return veh;
+    }
     @Bean()
     Vehicle vehicle1() {
         var veh = new Vehicle();

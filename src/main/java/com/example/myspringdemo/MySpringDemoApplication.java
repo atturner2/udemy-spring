@@ -13,24 +13,13 @@ public class MySpringDemoApplication {
 
         var context = new AnnotationConfigApplicationContext(ProjectConfig.class);
 
-        //Here is the primary bean
-        Vehicle primaryVehicleBean = context.getBean(Vehicle.class);
-        System.out.println("Primary Vehicle name from Spring context is: " + primaryVehicleBean.getName());
-        //in order to use this naming convention you have to give the beans
-        //a specific name. alternatively, the bean name will be the method name, like you see
-        //in the below exampl
-        Vehicle veh1 = context.getBean("vehicle1",Vehicle.class);
-        System.out.println("Vehicle name from Spring Context is: " + veh1.getName());
+        var myVehicle = context.getBean(Vehicle.class);
+        System.out.println("Here is the name before we set it, shoudl be null: " + myVehicle.getName());
+        myVehicle.setName("Chevrolet Corvette");
 
-        Vehicle veh2 = context.getBean("hondaVehicle",Vehicle.class);
-        System.out.println("Vehicle name from Spring Context is: " + veh2.getName());
+        System.out.println("Here is the name from the vehicle: " + myVehicle.getName());
+        myVehicle.printHello();
 
-        Vehicle veh3 = context.getBean("ferrariVehicle",Vehicle.class);
-        System.out.println("Vehicle name from Spring Context is: " + veh3.getName());
-        //this will throw a NoSuchBeanDefinitionException because there is no bean with this name.
-        //if you don't name the beans, then you get NoUniqueBeanDefinition
-        Vehicle veh4 = context.getBean("There isnt a vehicle with this name",Vehicle.class);
-        System.out.println("Vehicle that doesnt exist from Spring Context is: " + veh4.getName());
     }
 
 }

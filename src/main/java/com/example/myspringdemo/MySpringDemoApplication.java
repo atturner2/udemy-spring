@@ -1,5 +1,6 @@
 package com.example.myspringdemo;
 
+import beans.Person;
 import beans.Vehicle;
 import config.ProjectConfig;
 import org.apache.logging.log4j.util.Supplier;
@@ -17,10 +18,14 @@ public class MySpringDemoApplication {
 
     public static void main(String[] args) {
 
-        var context = new ClassPathXmlApplicationContext("beans.xml");
-        Vehicle corvette = context.getBean(Vehicle.class);
+        var context = new AnnotationConfigApplicationContext(ProjectConfig.class);
+        Person alex = context.getBean(Person.class);
+        Vehicle alexsCorvette = context.getBean(Vehicle.class);
 
-        System.out.println("Here is the vehicle name from the spring xml context: " + corvette.getName());
+
+        System.out.println("Person name from the spring context is: " + alex.getName());
+        System.out.println("Car name from the spring context is: " + alexsCorvette.getName());
+        System.out.println("Car name from the person object is: " + alex.getVehicle());
 
 
     }

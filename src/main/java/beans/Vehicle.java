@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 
 //no bean will be created here because there is no @annotation, even with the component scan in the appliation main
+@Component
 public class Vehicle {
 
     public Vehicle() {

@@ -21,6 +21,8 @@ public class MySpringDemoApplication {
         var context = new AnnotationConfigApplicationContext(ProjectConfig.class);
         Person alex = context.getBean(Person.class);
         Vehicle alexsCorvette = context.getBean(Vehicle.class);
+        alex.setName("Alex");
+        alexsCorvette.setName("Alex's Corvette");
 
 
         System.out.println("Person name from the spring context is: " + alex.getName());

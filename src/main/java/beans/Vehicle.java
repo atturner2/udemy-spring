@@ -1,11 +1,11 @@
 package beans;
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import services.VehicleServices;
 
 
 //no bean will be created here because there is no @annotation, even with the component scan in the appliation main
-@Component
+@Component("vehicleBean")
 public class Vehicle {
 
     public Vehicle() {
@@ -13,6 +13,12 @@ public class Vehicle {
     }
     private String name;
 
+    private VehicleServices vehicleServices;
+
+    @Autowired
+    public Vehicle(VehicleServices vehicleServices) {
+        this.vehicleServices = vehicleServices;
+    }
 
     public String getName() {
         return name;
@@ -21,6 +27,11 @@ public class Vehicle {
     public void setName(String name) {
         this.name = name;
     }
+
+    public VehicleServices getVehicleServices() {
+        return this.vehicleServices;
+    }
+
 
     @Override
     public String toString(){

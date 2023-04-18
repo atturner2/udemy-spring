@@ -3,12 +3,15 @@ package com.example.myspringdemo;
 import beans.Person;
 import beans.Vehicle;
 import config.ProjectConfig;
+import interfaces.Speakers;
+import interfaces.Tires;
 import org.apache.logging.log4j.util.Supplier;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import services.VehicleServices;
 
 import java.util.Random;
 
@@ -20,14 +23,15 @@ public class MySpringDemoApplication {
 
         var context = new AnnotationConfigApplicationContext(ProjectConfig.class);
         Person alex = context.getBean(Person.class);
-        Vehicle alexsCorvette = context.getBean(Vehicle.class);
-        alex.setName("Alex");
-        alexsCorvette.setName("Alex's Corvette");
+        System.out.println("Person bean should be successfully created and autowired");
+        alex.getVehicle().getVehicleServices().playMusic();
+        alex.getVehicle().getVehicleServices().moveVehicle();
 
 
         System.out.println("Person name from the spring context is: " + alex.getName());
-        System.out.println("Car name from the spring context is: " + alexsCorvette.getName());
         System.out.println("Car name from the person object is: " + alex.getVehicle());
+
+
 
 
     }
